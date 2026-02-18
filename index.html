@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preload" as="style" href="assets/covers/all-i-want.jpg">
+    <link rel="preload" as="style" href="assets/covers/american-mouth.jpg">
+    <link rel="preload" as="style" href="assets/covers/on-my-mind.jpg">
+    <link rel="preload" as="style" href="assets/covers/remember-the-name.jpg">
+    <link rel="preload" as="style" href="assets/covers/sia-angel-by-the-wings.jpg">
+    <link rel="preload" as="style" href="assets/covers/the-motto.jpg">
+    <link rel="preload" as="style" href="assets/fonts/Broadway_Regular.ttf">
+    <link rel="preload" as="style" href="assets/fonts/FuturaLight.otf">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/noun_Music_1360253.png" type="image/png">
+    <title>Audio player</title>
+</head>
+
+<body class="main">
+
+    <div class="glass">
+
+    </div>
+    <div class="preloader">
+        <div id="loader"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded_hiding');
+            window.setTimeout(function () {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, -500);
+        }
+    </script>
+
+
+    <main>
+        <p class="info">
+            info
+        </p>
+        <div class="functionalInfo">
+            <div class="content">
+                <span class="close"></span>
+                <p>Привет!</p>
+                <p>Функционал:</p>
+                <ul>
+                    <li>Запуск и остановка осуществляются, если нажать на соответствующую кнопку, пробел на клавиатуре
+                        или обложку альбома.
+                    </li>
+                    <li>Во время проигрывания трека можно открыть его текст, нажав на крутящуюся пластинку. Убирается
+                        текст повторным нажатием, при переключении трека или при остановке воспроизведения.
+                    </li>
+                    <li>Переключаться между треками можно при помощи соответствующих кнопок на странице либо стрелками
+                        на клавиатуре: вправо (следующий трек) и влево (предыдущий).</li>
+                    <li>Переключение на предыдущий трек: 1 нажатие, если проиграло менее 5 секунд трека, иначе — двойной
+                        клик. Одинарный в таком случае отмотает на начало трека.</li>
+                    <li>Можно отключить звук, нажав на иконку звука, повторное нажатие снова его включает.</li>
+                    <li>Регулировать звук можно при помощи шкалы с ползунком, которая всплывает при наведении на иконку
+                        звука, либо стрелками вверх(громче) и вниз(тише) на клавиатуре.</li>
+                    <li>Есть режим shuffle. Первое нажатие перемешивает список воспроизведения, второе — возвращает
+                        исходный порядок.</li>
+                    <li>Режим повтора. По умолчанию выключен: по достижении конца списка воспроизведение остановится. У
+                        включённого две модификации: повторять всё/повторять 1 композицию.</li>
+                    <li>Закрыть это окно можно, нажав в любом месте экрана :)</li>
+                </ul>
+                <p>Приятного прослушивания❤</p>
+            </div>
+        </div>
+        <div class="cover-section">
+            <div class="wrap_cover">
+                <div class="record"></div>
+                <div class="cover_img" id="play_on_cover"></div>
+                <div class="text bgimg">
+                    <div class="text mask">
+                        <pre id="text"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <h1 class="title"></h1>
+            <h2 class="author"></h2>
+            <input type="range" min="0" max="10000" id="progress" value="0" class="slider">
+            <div class="time">
+                <span id="currentTime">00:00</span>
+                <span id="duration">00:00</span>
+            </div>
+
+            <div class="controls">
+                <div class="controls-btns">
+                    <button id="previous" class="control-btn"><svg>
+                            <use xlink:href="sprite.svg#previous"></use>
+                        </svg></button>
+                    <button id="play" class="control-btn">
+                        <svg>
+                            <use xlink:href="sprite.svg#play" id="play-svg"></use>
+                        </svg>
+                    </button>
+                    <button id="next" class="control-btn"><svg>
+                            <use xlink:href="sprite.svg#next"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="control-btns-right">
+                    <button id="mute" class="control-btn"><svg>
+                            <use xlink:href="sprite.svg#volume" id="mute-svg"></use>
+                        </svg>
+                    </button>
+                    <div class="volume">
+                        <input type="range" id="volume" min="0" max="100" value="50">
+                    </div>
+                    <button id="shuffle" class="control-btn off"><svg>
+                            <use xlink:href="sprite.svg#shuffle" id="shuffle-svg"></use>
+                        </svg>
+                    </button>
+                    <button id="repeat" class="control-btn off"><svg>
+                            <use xlink:href="sprite.svg#repeat" id="repeat-svg"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- <footer>
+        <div class="footer">
+            <div class="footer-data">
+                <p class="footer-item">©</p>
+                <p class="footer-item">2022</p>
+                <a href="https://github.com/polivodichka" class="footer-item">github</a>
+            </div>
+
+            <a href="https://rs.school/js-stage0/" id="school_link"><img src="assets/rs_school_js.svg"
+                    alt="rs school logo"></a>
+
+        </div>
+    </footer> -->
+</body>
+
+<!-- <div class="preload">
+    <img src="assets/covers/american-mouth.jpg" alt="">
+    <img src="assets/covers/on-my-mind.jpg" alt="">
+    <img src="assets/covers/remember-the-name.jpg" alt="">
+    <img src="assets/covers/the-motto.jpg" alt="">
+    <img src="assets/covers/all-i-want.jpg" alt="">
+</div> -->
+
+<script src="fac.js"></script>
+<script type="module" src="script.js"></script>
+
+</html>
